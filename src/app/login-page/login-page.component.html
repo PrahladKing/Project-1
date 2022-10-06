@@ -1,0 +1,10 @@
+<form action="">
+    <fieldset>
+    <legend>Login Form</legend>
+        <label for="userId">User Id: &nbsp; &nbsp; </label>
+        <input type="text" id="userId" placeholder="Enter your email" name="userId" [(ngModel)]="userID"> {{userID}} <br> <br>
+        <label for="password">Password:  </label>
+        <input type="text" id="password" placeholder="Enter your password" name="password" [(ngModel)]="pass">  <br> <br>
+        <input [routerLink]="link" (click)="checkData()" routerLinkActive="active" type="submit" value="Login">
+    </fieldset>
+</form>
