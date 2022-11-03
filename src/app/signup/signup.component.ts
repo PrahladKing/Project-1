@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   public forms !: FormGroup
-  constructor(private build : FormBuilder, private http: HttpClient, private route: Router) { }
+  constructor(private build : FormBuilder, private service: AppService, private route: Router) { }
 
   ngOnInit(): void {
     this.forms = this.build.group({
@@ -23,14 +23,18 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
-    this.http.post<any>('http://localhost:3000/UserList',this.forms.value)
-    .subscribe(res=> {
-      alert('SignUp Successful');
-      this.forms.reset();
-      this.route.navigate(['login'])
-    },err=> {
-      alert('Something went wrong')
+    this.service.postEmp(this.forms.value)
+    .subscribe({
+      next:(res) => {
+        alert('SignUp success');
+        this.forms.reset();
+        this.route.navigate(['login'])
+      },
+      error:()=>{
+          alert("submit failed check error")
+      }
     })
   }
 
 }
+

@@ -23,4 +23,16 @@ export class AppService {
     deleteProduct(id:number) {
         return this.http.delete<any>('http://localhost:3000/productList/'+id)
     }
+
+    getEmp() {
+        return this.http.get<any>('http://localhost:3000/UserList/')
+    }
+
+    deleteEmp(id:number) {
+        return this.http.delete<any>('http://localhost:3000/UserList/'+id)
+    }
+
+    postEmp(data: any) {
+        return this.http.post<any>('http://localhost:3000/UserList/',data)
+    }
 }

@@ -24,11 +24,12 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { SignupComponent } from './signup/signup.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { myRoutes} from   './app-routing.module'
+import { myRoutes} from   './app-routing.module';
+import { EmployAddComponent } from './employ-add/employ-add.component'
 
 
 @NgModule({
-  declarations: [AppComponent,ShopCartComponent,AddProductComponent, SignupComponent, myRoutes],
+  declarations: [AppComponent, myRoutes, EmployAddComponent],
   imports: [
     HttpClientModule,
     BrowserModule,

@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Router } from "@angular/router";
+import { AppService } from "../app.service";
 
 @Component({
     selector: 'login-page',
@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 
 export class LoginPageComponent implements OnInit {
     public forms !: FormGroup
-    constructor(private build : FormBuilder, private http: HttpClient, private route:Router) {}
+    constructor(private build : FormBuilder, private service: AppService, private route:Router) {}
     ngOnInit(): void {
         this.forms = this.build.group({
             email:['',Validators.required],
@@ -19,10 +19,10 @@ export class LoginPageComponent implements OnInit {
         })
     }
     login() {
-        this.http.get<any>('http://localhost:3000/UserList')
+        this.service.getEmp()
         .subscribe(res=> {
           const users = res.find((a:any)=>{
-            return  a.email === this.forms.value.email && a.password === this.forms.value.password
+            return  a.email == this.forms.value.email && a.password == this.forms.value.password
           });
           if(users) {
             alert('login success');

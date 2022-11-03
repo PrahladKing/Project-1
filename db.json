@@ -22,20 +22,11 @@
   "UserList": [
     {
       "fullName": "Prahlad",
-      "email": "wsd",
-      "password": "123",
-      "number": 123,
+      "email": "prahlad@mail.com",
+      "password": "12345",
+      "number": 9700972319,
       "id": 1
-    },
-    {
-      "fullName": "1",
-      "email": "1",
-      "password": "1",
-      "number": 1,
-      "id": 2
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "employList": []
 }
