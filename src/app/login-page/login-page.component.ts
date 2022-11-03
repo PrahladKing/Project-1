@@ -1,28 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+    selector: 'login-page',
+    templateUrl: './login-page.component.html',
+    styleUrls: ['./login-page.component.css']
 })
+
 export class LoginPageComponent implements OnInit {
-
-  constructor(private _userData: AppService) { }
-  userID = ''
-  pass = ''
-  link = ''
-  userData : any = []
-  checkData() {
-    for(let x of this.userData) {
-      if(this.userID == x.mail && this.pass == x.password) {
-        this.link = '/list'
-        sessionStorage.setItem('user', x.user)
-      }
+    public forms !: FormGroup
+    constructor(private build : FormBuilder, private http: HttpClient, private route:Router) {}
+    ngOnInit(): void {
+        this.forms = this.build.group({
+            email:['',Validators.required],
+            password:['',Validators.required]
+        })
     }
-  }
-  ngOnInit() {
-    this.userData = this._userData.checkMail()
-  }
-
+    login() {
+        this.http.get<any>('http://localhost:3000/UserList')
+        .subscribe(res=> {
+          const users = res.find((a:any)=>{
+            return  a.email === this.forms.value.email && a.password === this.forms.value.password
+          });
+          if(users) {
+            alert('login success');
+            this.forms.reset();
+            this.route.navigate(['addProduct'])
+          }
+          else{
+            alert('user not found')
+          }
+        },err=> {
+            alert('Something went wrong')
+        })
+    }
 }

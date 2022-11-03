@@ -1,10 +1,27 @@
-<form action="">
-    <fieldset>
-    <legend>Login Form</legend>
-        <label for="userId">User Id: &nbsp; &nbsp; </label>
-        <input type="text" id="userId" placeholder="Enter your email" name="userId" [(ngModel)]="userID"> {{userID}} <br> <br>
-        <label for="password">Password:  </label>
-        <input type="text" id="password" placeholder="Enter your password" name="password" [(ngModel)]="pass">  <br> <br>
-        <input [routerLink]="link" (click)="checkData()" routerLinkActive="active" type="submit" value="Login">
-    </fieldset>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Login</h1>
+                    <h3>Please enter email & password</h3>
+                </div>
+                <form [formGroup]="forms" (ngSubmit)="login()">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> <br>
+                        <span style="color:cornsilk" *ngIf="forms.controls['email'].dirty && forms.hasError('required','email')">*Email Required</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                        <span style="color:cornsilk" *ngIf="forms.controls['password'].dirty && forms.hasError('required','password')">*Password Required</span>
+                    </div>
+                    <button [disabled]="!forms.valid" type="submit" class="btn btn-primary mb-3">Login</button>
+                </form>
+                <a style="color:white" routerLink="/signup">Didn't have an account? Signup Here!</a>
+            </div>
+        </div>
+    </div>
+</div>

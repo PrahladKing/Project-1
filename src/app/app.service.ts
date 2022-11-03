@@ -1,37 +1,26 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { countryInterface} from './app';
-import { catchError, Observable, throwError } from "rxjs";
 
 @Injectable({
-    providedIn: 'root'
+   providedIn: 'root'
 })
 export class AppService {
-    constructor(private _http: HttpClient) {}
-    sendData(): Observable<countryInterface[]> {
-       return this._http.get<countryInterface[]>('../assets/data/db.json')
-       .pipe(catchError(this.errorHandler))
+
+
+    constructor(private http : HttpClient) {}
+
+    postProduct(data: any) {
+        return this.http.post<any>('http://localhost:3000/productList/',data)
     }
-    errorHandler(error: HttpErrorResponse) {
-       return throwError(error.message || "unknown server error")
+
+    getProduct() {
+        return this.http.get<any>('http://localhost:3000/productList/')
     }
-    checkMail() {
-        return [
-            {
-                mail: "prahlad@gmail.com",
-                password: 123456,
-                user: 'root'
-            },
-            {
-                mail: "eswar@gmail.com",
-                password: 111111,
-                user: 'guest'
-            },
-            {
-                mail: "ravi@gmail.com",
-                password: 121212,
-                user: 'super'
-            },
-        ]
+    putProduct(data: any, id: number) {
+        return this.http.put<any>('http://localhost:3000/productList/'+ 
+        id, data)
+    }
+    deleteProduct(id:number) {
+        return this.http.delete<any>('http://localhost:3000/productList/'+id)
     }
 }
