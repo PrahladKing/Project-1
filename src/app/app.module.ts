@@ -2,10 +2,13 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NgChartsModule} from 'ng2-charts';
 import { ShopCartComponent } from "./shop-cart/shop-cart.component";
 import { AddProductComponent } from "./add-product/add-product.component";
 
 import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -25,12 +28,16 @@ import { MatSortModule } from "@angular/material/sort";
 import { SignupComponent } from './signup/signup.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { myRoutes} from   './app-routing.module';
-import { EmployAddComponent } from './employ-add/employ-add.component'
+import { EmployAddComponent } from './employ-add/employ-add.component';
+// import { ChartsComponent } from './charts/charts.component';
+import { UserDataComponent } from './user-data/user-data.component'
 
 
 @NgModule({
-  declarations: [AppComponent, myRoutes, EmployAddComponent],
+  declarations: [AppComponent, myRoutes, EmployAddComponent, UserDataComponent],
   imports: [
+    MatListModule,
+    MatSidenavModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,

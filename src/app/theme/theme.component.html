@@ -1,0 +1,11 @@
+<h1 class="theme-msg">Welcome to themes</h1>
+
+<app-child (childInfo)="msg=$event"></app-child>
+
+<div [ngStyle]="msg" class="bg-container">
+<p class="clicked-clr">you clicked "{{msg.backgroundColor}}"</p>
+
+</div>
+
+
+<button class="btn btn-primary m-5" routerLink="/dashboard">Back to home</button>
