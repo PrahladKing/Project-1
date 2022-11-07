@@ -1,7 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AddProductComponent } from "./add-product/add-product.component";
+import { PageErrorComponent } from "./add-product/page-error.component";
 import { BannerComponent } from "./banner/banner.component";
+import { ChartsComponent } from "./charts/charts.component";
 import { ChildComponent } from "./child/child.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { EmployShowComponent } from "./employ-show/employ-show.component";
@@ -10,6 +12,7 @@ import { MapsComponent } from "./maps/maps.component";
 import { ShopCartComponent } from "./shop-cart/shop-cart.component";
 import { SignupComponent } from "./signup/signup.component";
 import { ThemeComponent } from "./theme/theme.component";
+import { UserDataComponent } from "./user-data/user-data.component";
 
 const routes : Routes = [
     {path: '', component: BannerComponent},
@@ -20,7 +23,8 @@ const routes : Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'theme', component: ThemeComponent},
     {path: 'maps', component: MapsComponent},
-    // {path: 'charts', component: ChartsComponent}
+    {path: 'charts', component: ChartsComponent},
+    {path:'**', component: PageErrorComponent}
 ]
 
 @NgModule({
@@ -40,6 +44,8 @@ export const myRoutes = [
     EmployShowComponent,
     DashboardComponent,
     ThemeComponent,
+    ChildComponent,
+    UserDataComponent,
     MapsComponent,
-    ChildComponent
+    ChartsComponent
 ]
